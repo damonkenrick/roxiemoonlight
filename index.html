@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Roxie Moonlight</title>
+  <meta name="description" content="A retro-futurist universe of AI-generated art, space exploration, and adventure. Follow the journey of Roxie Moonlight."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Lora:ital@1&family=Inter:wght@300;400;500&display=swap&text=RoxieMoonlight" rel="stylesheet"/>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Limelight&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Lora:ital@1&family=Inter:wght@300;400;500&display=swap&text=RoxieMoonlight');
+  </style>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:  #080e1a;
+      --gold:  #c9983a;
+      --gold2: #a87c2a;
+      --rose:  #d97a7a;
+      --cream: #f0e8d8;
+      --mist:  #7a9ab8;
+      --white: #fdf8f2;
+      --ff-display: 'Limelight', cursive;
+      --ff-serif:   'Cormorant Garamond', Georgia, serif;
+      --ff-body:    'Inter', sans-serif;
+    }
+
+    html, body {
+      background: var(--navy);
+      color: var(--cream);
+      font-family: var(--ff-body);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 2.5rem;
+    }
+
+    .nav-logo {
+      font-family: var(--ff-display);
+      font-size: 16px;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--rose); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mist);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        radial-gradient(ellipse at center, rgba(8,14,26,0.25) 0%, rgba(8,14,26,0.72) 100%),
+        linear-gradient(to top, rgba(8,14,26,0.95) 0%, rgba(8,14,26,0.0) 50%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 5;
+      padding: 0 1.5rem;
+      max-width: 720px;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+
+    /* ── HERO TITLE ── */
+    .hero-logo {
+      display: block;
+      width: min(580px, 90vw);
+      margin: 0 auto 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 1.2s forwards;
+      /* PNG has white background — mix-blend-mode makes white transparent */
+      mix-blend-mode: screen;
+    }
+
+    /* ── HERO TITLE ── */
+    .hero-title {
+      font-family: var(--ff-display);
+      font-size: clamp(52px, 10vw, 108px);
+      line-height: 0.92;
+      color: var(--white);
+      margin-bottom: 0.2em;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.4s forwards;
+    }
+
+        .hero-tagline {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 18px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--white);
+      letter-spacing: 0.05em;
+      margin-bottom: 1.75rem;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.6s forwards;
+    }
+
+    .hero-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.85;
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.75s forwards;
+    }
+
+    /* ── EMAIL SIGNUP ── */
+    .signup-form {
+      display: flex;
+      max-width: 440px;
+      margin: 0 auto;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.9s forwards;
+    }
+
+    .signup-form input[type="email"] {
+      flex: 1;
+      padding: 13px 18px;
+      background: rgba(8,14,26,0.75);
+      border: 0.5px solid rgba(201,152,58,0.45);
+      border-right: none;
+      color: var(--cream);
+      font-family: var(--ff-body);
+      font-size: 13px;
+      outline: none;
+      -webkit-appearance: none;
+      transition: border-color 0.2s;
+    }
+
+    .signup-form input[type="email"]::placeholder { color: var(--mist); }
+    .signup-form input[type="email"]:focus { border-color: rgba(201,152,58,0.8); }
+
+    .signup-form button {
+      padding: 13px 24px;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: var(--ff-body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    .signup-form button:hover { background: var(--gold2); }
+
+    .signup-note {
+      font-size: 11px;
+      color: var(--mist);
+      margin-top: 0.85rem;
+      letter-spacing: 0.04em;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 1.05s forwards;
+    }
+
+    .signup-success {
+      display: none;
+      font-family: var(--ff-serif);
+      font-size: 18px;
+      font-style: italic;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      padding: 1rem 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 0.5px solid rgba(201,152,58,0.15);
+      padding: 1.75rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-family: var(--ff-display);
+      font-size: 13px;
+      color: var(--gold);
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      color: var(--mist);
+      opacity: 0.5;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 600px) {
+      nav { padding: 1.25rem; }
+      .nav-links { display: none; }
+      .signup-form { flex-direction: column; gap: 0.5rem; }
+      .signup-form input[type="email"] { border-right: 0.5px solid rgba(201,152,58,0.45); }
+      footer { flex-direction: column; align-items: flex-start; padding: 1.5rem 1.25rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-eyebrow, .hero-title, .hero-tagline,
+      .hero-desc, .signup-form, .signup-note { animation: none; opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero" aria-label="Roxie Moonlight hero">
+
+  <video class="hero-video" autoplay muted loop playsinline poster="poster.jpg" aria-hidden="true">
+    <source src="roxie_hero.mov" type="video/quicktime"/>
+  </video>
+
+  <div class="hero-overlay" aria-hidden="true"></div>
+
+  <nav aria-label="Site navigation">
+    <a class="nav-logo" href="#">Roxie <span>Moonlight</span></a>
+    <ul class="nav-links">
+      <li><a href="https://www.tiktok.com/@roxiemoonlight" target="_blank" rel="noopener">TikTok</a></li>
+      <li><a href="https://www.youtube.com/@roxiemoonlight" target="_blank" rel="noopener">YouTube</a></li>
+      <li><a href="https://www.instagram.com/roxiemoonlight" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="https://www.facebook.com/roxiemoonlight" target="_blank" rel="noopener">Facebook</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">A human &amp; AI collaboration</p>
+
+    <h1 class="hero-title">Roxie<br/>Moonlight</h1>
+
+    <p class="hero-tagline">Pilot. Explorer. Troublemaker. One minute around the moon took her further than she ever dreamed.</p>
+    <p class="hero-desc">An alien galaxy of space explorers, rogues, robots, and strange planets — brought to life through human/AI-generated art, video, and story.</p>
+
+    <form class="signup-form" id="signupForm" onsubmit="handleSignup(event)" novalidate aria-label="Email signup">
+      <input type="email" id="emailInput" placeholder="Your email address" autocomplete="email" required aria-label="Email address"/>
+      <button type="submit">Join the mission</button>
+    </form>
+    <p class="signup-success" id="signupSuccess" role="status">Welcome aboard. First transmission incoming.</p>
+    <p class="signup-note" id="signupNote">No spam. Just new art, story updates, and early access.</p>
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Roxie Moonlight</div>
+  <p class="footer-copy">&copy; 2026 Damon Kenrick &middot; All rights reserved</p>
+</footer>
+
+
+<script>
+  function handleSignup(e) {
+    e.preventDefault();
+    const input = document.getElementById('emailInput');
+    const email = input.value.trim();
+    if (!email || !email.includes('@')) {
+      input.style.borderColor = 'rgba(217,122,122,0.8)';
+      input.focus();
+      return;
+    }
+    // Replace this with your Mailchimp or other email service code
+    document.getElementById('signupForm').style.display    = 'none';
+    document.getElementById('signupNote').style.display    = 'none';
+    document.getElementById('signupSuccess').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
